@@ -24,6 +24,6 @@ Also display the title inside div with class="caption".
 
 This repeats further whenever someone changes the number in input.
 
-[demo video](https://d3dyfaf3iutrxo.cloudfront.net/general/upload/64eaf5768a0342b7bd96bb259b0d7d06.mp4)
+## [demo video](https://d3dyfaf3iutrxo.cloudfront.net/general/upload/64eaf5768a0342b7bd96bb259b0d7d06.mp4)
 
 
