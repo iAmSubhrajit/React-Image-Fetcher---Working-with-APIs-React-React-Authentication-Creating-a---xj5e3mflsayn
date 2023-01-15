@@ -16,8 +16,9 @@ const App = () => {
         axios.get(`https://jsonplaceholder.typicode.com/photos/${userId}`)
             .then((res) => {
                 setIsLoading(true)
+                setData([res.data])
+                
                 setTimeout(() => {
-                    setData([res.data])
                     setIsLoading(false)
                 }, 500)
             })
@@ -28,7 +29,7 @@ const App = () => {
 
     return (
         <>
-            Id number
+            <span>Id number </span>
             <input type='number' onChange={handleUserId} />
             {isLoading ? <Loader /> : (data.map((d) => (
                 <PhotoFrame url={d.url} title={d.title} />
