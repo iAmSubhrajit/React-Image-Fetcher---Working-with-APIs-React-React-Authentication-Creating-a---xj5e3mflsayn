@@ -4,36 +4,35 @@ import '../styles/App.css';
 import { Loader } from './Loader';
 import { PhotoFrame } from './PhotoFrame';
 const App = () => {
-    const [value, setValue] = useState();
+    const [userId, setUserId] = useState();
     const [data, setData] = useState([])
-    const [loader, setLoader] = useState(false);
-    const handleInputValue = (e) => {
-        setValue(e.target.value)
-        if (value) {
-            setLoader(true)
-        }
-        else {
-            setLoader(false)
-        }
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleUserId = (e) => {
+        setUserId(e.target.value)
     }
+    
     useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/photos/${value}`)
+        axios.get(`https://jsonplaceholder.typicode.com/photos/${userId}`)
             .then((res) => {
-                setTimeout(() => {
+                setIsLoading(true)
+                setTimeout(async () => {
                     setData([res.data])
-                    setLoader(false)
-                });
+                    setIsLoading(false)
+                },500)
             })
             .catch((error) => console.log(error))
-    }, [value])
+
+
+    }, [userId])
+
     return (
         <>
             Id number
-            <input type='number' onChange={handleInputValue} />
-
-            {loader ? <Loader /> : data.map((d) => (
+            <input type='number' onChange={handleUserId} />
+            {isLoading ? <Loader /> : (data.map((d) => (
                 <PhotoFrame url={d.url} title={d.title} />
-            ))}
+            )))}
         </>
     )
 }
