@@ -11,15 +11,15 @@ const App = () => {
     const handleUserId = (e) => {
         setUserId(e.target.value)
     }
-    
+
     useEffect(() => {
         axios.get(`https://jsonplaceholder.typicode.com/photos/${userId}`)
             .then((res) => {
                 setIsLoading(true)
-                setTimeout(async () => {
+                setTimeout(() => {
                     setData([res.data])
                     setIsLoading(false)
-                },500)
+                }, 500)
             })
             .catch((error) => console.log(error))
 
